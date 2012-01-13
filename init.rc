@@ -121,7 +121,7 @@ loglevel 3
 on fs
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
-    mount ext4 /dev/block/mmcblk0p13 /system noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p13 /system wait
     mount rfs /dev/block/mmcblk0p13 /system check=no
 
     # Temp add for FY -> GB update problem 

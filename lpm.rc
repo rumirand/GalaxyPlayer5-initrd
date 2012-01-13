@@ -37,7 +37,7 @@ on early-fs
 
 on fs
     mount tmpfs tmpfs /tmp
-    mount ext4 /dev/block/mmcblk0p13 /system noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p13 /system wait ro
     mount rfs /dev/block/mmcblk0p13 /system check=no
     #mount rfs /dev/block/mmcblk0p13 /system ro remount
 
