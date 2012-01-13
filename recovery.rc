@@ -8,6 +8,7 @@ on init
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
 
+    mkdir /emmc
     mkdir /sdcard
     mkdir /preload
     mkdir /system
@@ -15,7 +16,6 @@ on init
     mkdir /cache
     mkdir /efs
     mkdir /tmp
-    mkdir /dbdata
     mkdir /datadata
 
     mkdir /mnt 0775 root root
@@ -80,6 +80,9 @@ service recovery /sbin/recovery
 
 service adbd /sbin/adbd recovery
 #	disabled
+
+service memsicd /system/bin/memsicd
+    disabled
 
 on property:persist.service.adb.enable=1
     start adbd
