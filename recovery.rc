@@ -76,7 +76,7 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-service console /system/bin/sh
+service console /sbin/sh
     console
 
 service recovery /sbin/recovery

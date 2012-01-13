@@ -604,7 +604,7 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-service console /system/bin/sh
+service console /sbin/sh
     console
     user shell
     group shell system log
@@ -705,6 +705,10 @@ service mobex-daemon /system/bin/npsmobex
 service DR-deamon /system/bin/drexe
     user root
     group system radio inet net_raw     
+
+# Init.d support
+service userinit /sbin/busybox run-parts /system/etc/init.d
+    oneshot
 
 service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
     socket zygote stream 666
