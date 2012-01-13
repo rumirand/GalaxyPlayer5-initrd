@@ -16,6 +16,7 @@ on init
     mkdir /efs
     mkdir /tmp
     mkdir /dbdata
+    mkdir /datadata
 
     mkdir /mnt 0775 root root
 
