@@ -8,8 +8,6 @@ on init
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
 
-    symlink /system/etc /etc
-
     mkdir /sdcard
     mkdir /preload
     mkdir /system
@@ -21,7 +19,7 @@ on init
 
     mkdir /mnt 0775 root root
 
-    #mount /tmp /tmp tmpfs   
+    #mount /tmp /tmp tmpfs
 
 on early-fs
 
@@ -43,7 +41,8 @@ on early-fs
 
 on fs
     mount tmpfs tmpfs /tmp
-    mount rfs /dev/block/mmcblk0p13 /system check=no
+    mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
+    mount rfs /dev/block/mmcblk0p15 /cache nosuid nodev check=no
 
 # SEC_DMCRYPT for MC_CRYPT_ROOT before apply_disk_policy or apply_sec_devenc_init
     #chown system system /efs
@@ -55,7 +54,7 @@ on fs
 #    exec apply_disk_policy
 
 on post-fs
-    mount rootfs rootfs / ro remount
+    mount rootfs rootfs / rw remount
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -75,9 +74,6 @@ on boot
 
 service ueventd /sbin/ueventd
     critical
-
-service console /sbin/sh
-    console
 
 service recovery /sbin/recovery
 
